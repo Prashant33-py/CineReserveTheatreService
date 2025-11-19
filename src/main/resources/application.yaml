@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: CINE-RESERVE-THEATRE-SERVICE
+  datasource:
+    url: jdbc:postgresql://${CINE_RESERVE_DATABASE_HOST}:${CINE_RESERVE_DATABASE_PORT}/${CINE_RESERVE_DATABASE_NAME}
+    username: ${CINE_RESERVE_DATABASE_USER}
+    password: ${CINE_RESERVE_DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    hostname: localhost
+server:
+  port: 8083
