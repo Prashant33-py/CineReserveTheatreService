@@ -1,12 +1,10 @@
 package TheatreService.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
+@Table(name = "auditoriums")
 public class Auditorium {
 
     @Id
@@ -19,7 +17,19 @@ public class Auditorium {
             generator = "auditorium_sequence",
             strategy = GenerationType.SEQUENCE
     )
+    @Column(name = "auditoriumId")
     private String auditoriumId;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "seatingCapacity", nullable = false)
     private int seatingCapacity;
+
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @JoinColumn()
+    private AuditoriumLayout auditoriumLayout;
 }
