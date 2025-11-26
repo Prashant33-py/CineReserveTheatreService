@@ -1,13 +1,12 @@
 package TheatreService.model;
 
-import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-@Table(name = "auditoriums")
+//@Table(name = "auditoriums")
 public class Auditorium {
 
-    @Id
+    /*@Id
     @SequenceGenerator(
             sequenceName = "auditorium_sequence",
             name = "auditorium_sequence",
@@ -17,19 +16,19 @@ public class Auditorium {
             generator = "auditorium_sequence",
             strategy = GenerationType.SEQUENCE
     )
-    @Column(name = "auditoriumId")
+    @Column(name = "auditoriumId")*/
     private String auditoriumId;
 
-    @Column(name = "name", nullable = false)
+//    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "seatingCapacity", nullable = false)
+//    @Column(name = "seatingCapacity", nullable = false)
     private int seatingCapacity;
 
-    @OneToOne(
+    /*@OneToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    @JoinColumn()
+    @JoinColumn(name = "auditoriumLayout", referencedColumnName = "")*/
     private AuditoriumLayout auditoriumLayout;
 }

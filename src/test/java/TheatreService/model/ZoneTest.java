@@ -1,59 +1,62 @@
 package TheatreService.model;
 
+import TheatreService.repository.SeatRepository;
+import TheatreService.repository.ZoneRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ZoneTest {
 
+    @Autowired
+    private ZoneRepository zoneRepository;
+
+    @Autowired
+    private SeatRepository seatRepository;
+
     @Test
     public void testZoneCreation() {
         Seat seat1 = Seat.builder()
-                .seatId("1")
-                .seatType(Seat.SeatType.STANDARD)
+                .seatType(Seat.SeatType.RECLINER)
                 .seatNumber("A1")
-                .seatLength(0.5)
-                .seatWidth(0.5)
                 .seatXPosition(1)
                 .seatYPosition(1)
                 .isAvailable(true)
                 .build();
+        seat1.setSeatDimensions(seat1.getSeatType());
+
         Seat seat2 = Seat.builder()
-                .seatId("2")
                 .seatType(Seat.SeatType.STANDARD)
                 .seatNumber("A2")
-                .seatLength(0.5)
-                .seatWidth(0.5)
                 .seatXPosition(2)
                 .seatYPosition(1)
                 .isAvailable(true)
                 .build();
+        seat2.setSeatDimensions(seat2.getSeatType());
 
         Seat seat3 = Seat.builder()
-                .seatId("3")
                 .seatType(Seat.SeatType.STANDARD)
                 .seatNumber("A3")
-                .seatLength(0.5)
-                .seatWidth(0.5)
                 .seatXPosition(3)
                 .seatYPosition(1)
                 .isAvailable(false)
                 .build();
-
-        List<String> seats = List.of(seat1.getSeatId(), seat2.getSeatId(), seat3.getSeatId());
+        seat3.setSeatDimensions(seat3.getSeatType());
 
         Zone vipZone = Zone.builder()
-                .zoneId("Z01")
                 .name("VIP")
                 .price(300)
-                .seatIds(seats)
                 .build();
 
+        vipZone.addSeat(seat1);
+        vipZone.addSeat(seat2);
+        vipZone.addSeat(seat3);
+        zoneRepository.save(vipZone);
+//        seatRepository.saveAll(seats);
+
         System.out.println(vipZone);
+        System.out.println(seat1);
 
     }
 

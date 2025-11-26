@@ -1,5 +1,6 @@
 package TheatreService.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,13 +17,12 @@ import java.util.List;
 @NoArgsConstructor
 public class AuditoriumLayout {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /*@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "layoutId")*/
     private String layoutId;
+
+//    @Column(name = "zones")
     private List<Zone> zones;
-
-
-
-
 
 }

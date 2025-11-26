@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Embeddable
 @Data
 @Builder
 @AllArgsConstructor
@@ -17,6 +16,6 @@ public class Location {
     private String area;
     private String city;
     private String state;
-    @Column(name = "zipCode", nullable = false)
+//    @Column(name = "zipCode", nullable = false)
     private int zipCode;
 }
