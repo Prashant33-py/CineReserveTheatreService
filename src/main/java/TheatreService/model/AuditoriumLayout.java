@@ -1,28 +1,48 @@
 package TheatreService.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
 @Builder
 @Data
+@ToString(exclude = "zones")
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "auditorium_layout")
 public class AuditoriumLayout {
 
-    /*@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "layoutId")*/
-    private String layoutId;
+    @Column(name = "layout_id")
+    private int layoutId;
 
-//    @Column(name = "zones")
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
+    @JoinTable(
+            name = "layout_zones",
+            joinColumns = @JoinColumn(
+                    name = "layout_id",
+                    referencedColumnName = "layout_id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "zone_id",
+                    referencedColumnName = "zone_id"
+            )
+    )
     private List<Zone> zones;
+
+    public void addZones(Zone zone) {
+        if (zones == null) {
+            zones = new java.util.ArrayList<>();
+        }
+        zones.add(zone);
+    }
 
 }

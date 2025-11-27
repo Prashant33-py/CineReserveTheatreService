@@ -66,8 +66,6 @@ class ZoneTest {
         seatRepository.saveAll(List.of(seat1, seat2, seat3));
 
         System.out.println(vipZone);
-        System.out.println(seat1);
-
     }
 
     @Test
