@@ -1,5 +1,6 @@
 package TheatreService.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "zone")
 @Entity
 @Table(name = "seats")
 public class Seat {
@@ -62,9 +63,8 @@ public class Seat {
         }
     }
 
-    @ManyToOne(
-            cascade = CascadeType.ALL
-    )
+    @ManyToOne
     @JoinColumn(name = "zone_id", referencedColumnName = "zone_id")
+    @JsonBackReference
     private Zone zone;
 }

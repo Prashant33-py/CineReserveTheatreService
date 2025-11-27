@@ -1,15 +1,15 @@
 package TheatreService.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Builder
 @Data
-@ToString
+@ToString(exclude = "seats")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -29,20 +29,12 @@ public class Zone {
 
     @OneToMany(
             mappedBy = "zone",
-            cascade = CascadeType.ALL
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.REMOVE
+            }
     )
+    @JsonManagedReference
     private List<Seat> seats = new ArrayList<>();
-
-    public void addSeat(Seat seat) {
-        if (seat == null) return;
-        seat.setZone(this);
-        this.seats.add(seat);
-    }
-
-    public void removeSeat(Seat seat) {
-        if (seat == null) return;
-        seat.setZone(null);
-        this.seats.remove(seat);
-    }
 
 }
