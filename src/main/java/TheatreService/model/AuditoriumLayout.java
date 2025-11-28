@@ -21,9 +21,9 @@ public class AuditoriumLayout {
 
     @ManyToMany(
             cascade = {
-                    CascadeType.PERSIST,
                     CascadeType.MERGE
-            }
+            },
+            fetch = FetchType.LAZY
     )
     @JoinTable(
             name = "layout_zones",

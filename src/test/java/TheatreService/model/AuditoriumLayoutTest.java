@@ -2,6 +2,7 @@ package TheatreService.model;
 
 import TheatreService.repository.AuditoriumLayoutRepository;
 import TheatreService.repository.ZoneRepository;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
 class AuditoriumLayoutTest {
 
     @Autowired
@@ -31,6 +33,14 @@ class AuditoriumLayoutTest {
 
         System.out.println(layout);
 
+    }
+
+    @Test
+    public void testGetZonesFromAuditoriumLayout() {
+        AuditoriumLayout layout = auditoriumLayoutRepository.findById(4).orElseThrow();
+        for (Zone zone : layout.getZones()) {
+            System.out.println(zone);
+        }
     }
 
 }
