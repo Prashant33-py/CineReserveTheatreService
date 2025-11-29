@@ -38,6 +38,15 @@ public class AuditoriumLayout {
     )
     private List<Zone> zones;
 
+    @OneToMany(
+            mappedBy = "auditoriumLayout",
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.REMOVE
+            }
+    )
+    private List<Auditorium> auditoriums;
+
     public void addZones(Zone zone) {
         if (zones == null) {
             zones = new java.util.ArrayList<>();

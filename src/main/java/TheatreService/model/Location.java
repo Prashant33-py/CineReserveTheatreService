@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Embeddable
 public class Location {
     private String street;
     private String area;
     private String city;
     private String state;
-//    @Column(name = "zipCode", nullable = false)
     private int zipCode;
 }

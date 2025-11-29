@@ -1,0 +1,6 @@
+#Command for creating a docker volume
+docker volume create cine-reserve-db-data
+
+#Command for running a PostgreSQL container with specified environment variables and volume
+docker run -d --name cine-reserve -p 5432:5432 --volume cine-reserve-db-data:/var/lib/postgresql/data -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=cine_reserve_theatres postgres -c max_connections=200
+
