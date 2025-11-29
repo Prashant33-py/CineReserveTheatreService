@@ -16,10 +16,10 @@ public class SeatController {
     @Autowired
     private SeatService seatService;
 
-    @PostMapping("/seat")
+/*    @PostMapping("/seat")
     public ResponseEntity<String> addSeat(@RequestBody Seat seat) {
         return seatService.addSeat(seat);
 
-    }
+    }*/
 
 }
