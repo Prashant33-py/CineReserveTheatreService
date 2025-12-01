@@ -1,5 +1,6 @@
 package TheatreService.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,7 +24,7 @@ public class Auditorium {
             strategy = GenerationType.SEQUENCE
     )
     @Column(name = "auditorium_id")
-    private String auditoriumId;
+    private int auditoriumId;
 
     @Column(name = "name", nullable = false)
     private String name;

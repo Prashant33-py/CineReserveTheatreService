@@ -1,5 +1,6 @@
 package TheatreService.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @Table(name = "theatres")
 public class Theatre {
 
-    enum Amenity {
+    public enum Amenity {
         PARKING, FOOD_COURT, RESTROOMS, WHEELCHAIR_ACCESSIBLE, FIRE_EXITS, LOUNGE_AREA
     }
 
@@ -34,7 +35,8 @@ public class Theatre {
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.REMOVE
-            }
+            },
+            fetch = FetchType.LAZY
     )
     private List<Auditorium> auditoriums;
 }
