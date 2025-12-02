@@ -18,6 +18,6 @@ public class TheatreDTO {
     private String name;
     private Location location;
     private List<Theatre.Amenity> amenities;
-//    private AuditoriumDTO auditorium;
+    private AuditoriumDTO auditorium;
 
 }

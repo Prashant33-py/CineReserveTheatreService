@@ -15,6 +15,6 @@ public class AuditoriumDTO {
     private int auditoriumId;
     private String name;
     private int seatingCapacity;
-    private TheatreDTO theatre;
+//    private TheatreDTO theatre;
 
 }

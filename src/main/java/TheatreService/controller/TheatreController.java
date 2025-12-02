@@ -1,5 +1,6 @@
 package TheatreService.controller;
 
+import TheatreService.dto.TheatreDTO;
 import TheatreService.model.Theatre;
 import TheatreService.service.TheatreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class TheatreController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Theatre> getTheatreById(@PathVariable("id") int theatreId){
+    public ResponseEntity<TheatreDTO> getTheatreById(@PathVariable("id") int theatreId){
         return theatreService.getTheatreById(theatreId);
     }
 

@@ -44,12 +44,12 @@ public class AuditoriumService {
                     .auditoriumId(auditorium.getAuditoriumId())
                     .name(auditorium.getName())
                     .seatingCapacity(auditorium.getSeatingCapacity())
-                    .theatre(TheatreDTO.builder()
-                            .theatreId(theatre.getId())
-                            .location(theatre.getLocation())
-                            .name(theatre.getName())
-                            .amenities(theatre.getAmenities())
-                            .build())
+//                    .theatre(TheatreDTO.builder()
+//                            .theatreId(theatre.getId())
+//                            .location(theatre.getLocation())
+//                            .name(theatre.getName())
+//                            .amenities(theatre.getAmenities())
+//                            .build())
                     .build();
         }
         return new ResponseEntity<>(auditoriumDTO, HttpStatus.OK);

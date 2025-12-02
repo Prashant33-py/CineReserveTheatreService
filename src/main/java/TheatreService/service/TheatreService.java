@@ -1,5 +1,6 @@
 package TheatreService.service;
 
+import TheatreService.dto.TheatreDTO;
 import TheatreService.model.Theatre;
 import TheatreService.repository.TheatreRepository;
 import jakarta.transaction.Transactional;
@@ -13,8 +14,11 @@ public class TheatreService {
 
     private final TheatreRepository theatreRepository;
 
-    public TheatreService(TheatreRepository theatreRepository) {
+    private final AuditoriumService auditoriumService;
+
+    public TheatreService(TheatreRepository theatreRepository, AuditoriumService auditoriumService) {
         this.theatreRepository = theatreRepository;
+        this.auditoriumService = auditoriumService;
     }
 
     /**
@@ -36,12 +40,19 @@ public class TheatreService {
      * @param id Theatre ID
      * @return ResponseEntity containing the Theatre object or NOT_FOUND status
      */
-    public ResponseEntity<Theatre> getTheatreById(Integer id) {
+    public ResponseEntity<TheatreDTO> getTheatreById(Integer id) {
         Theatre theatre = theatreRepository.findById(id).orElse(null);
         if (theatre == null){
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(theatre, HttpStatus.OK);
+        TheatreDTO theatreDTO = TheatreDTO.builder()
+                .theatreId(theatre.getId())
+                .name(theatre.getName())
+                        .amenities(theatre.getAmenities())
+                                .location(theatre.getLocation())
+                                        .build();
+        System.out.println(theatre.getAuditoriums());
+        return new ResponseEntity<>(theatreDTO, HttpStatus.OK);
     }
 
 }
