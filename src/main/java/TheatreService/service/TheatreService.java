@@ -48,10 +48,10 @@ public class TheatreService {
         TheatreDTO theatreDTO = TheatreDTO.builder()
                 .theatreId(theatre.getId())
                 .name(theatre.getName())
-                        .amenities(theatre.getAmenities())
-                                .location(theatre.getLocation())
-                                        .build();
-        System.out.println(theatre.getAuditoriums());
+                .amenities(theatre.getAmenities())
+                .location(theatre.getLocation())
+                .auditorium(auditoriumService.getAuditoriumsByTheatreId(id))
+                .build();
         return new ResponseEntity<>(theatreDTO, HttpStatus.OK);
     }
 

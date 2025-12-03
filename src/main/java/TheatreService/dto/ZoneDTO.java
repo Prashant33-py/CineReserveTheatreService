@@ -5,16 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class AuditoriumDTO {
+public class ZoneDTO {
 
-    private int auditoriumId;
+    private int zoneId;
     private String name;
-    private int seatingCapacity;
-    private AuditoriumLayoutDTO auditoriumLayout;
-//    private TheatreDTO theatre;
+    private double price;
+    private List<SeatDTO> seats;
 
 }
