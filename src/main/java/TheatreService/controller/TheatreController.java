@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/cine-reserve/theatre")
 public class TheatreController {
@@ -19,9 +21,14 @@ public class TheatreController {
         return theatreService.addTheatre(theatre);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<TheatreDTO> getTheatreById(@PathVariable("id") int theatreId){
         return theatreService.getTheatreById(theatreId);
+    }
+
+    @GetMapping("/zip-code/{zipCode}")
+    public ResponseEntity<List<TheatreDTO>> getTheatreByZipCode(@PathVariable Integer zipCode){
+        return theatreService.getTheatreByZipCode(zipCode);
     }
 
 }
